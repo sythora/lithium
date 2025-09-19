@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lithium Settings</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./styles/cursor.css">
+        <link rel="stylesheet" href="./styles/settings.css">
+</head>
+<body>
+    <div class="floating"></div>
+    <div class="glow-border"></div>
+    <div class="rainbow-mode"></div>
+    <div class="matrix-rain"></div>
+    <div class="hidden-stars"></div>
+    <div class="ambience-particle"></div>
+    <div class="ambience-particle"></div>
+    <div class="ambience-particle"></div>
+    <script src="./js/cursor.js"></script>
+    <script src="./js/cursor-settings.js"></script>
+    <script src="./js/custom-theme.js"></script>
+
+    <div class="time-bar" id="timeBar"></div>
+
+    <button class="back-button" onclick="window.location.href='/'">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
+    
+    <div class="settings-container">
+        <h1 class="settings-title">Lithium Settings</h1>
+        
+        <div class="settings-section">
+            <h2><i class="fas fa-shield-alt settings-icon"></i>Proxy Settings</h2>
+            <div class="setting-item">
+                <span class="setting-label">Proxy Type</span>
+                <div class="setting-control">
+                    <select id="proxyType">
+                        <option value="uv">Ultraviolet (UV)</option>
+                        <option value="sj">Scramjet (SJ)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="proxy-status" id="proxyStatus"></div>
+        </div>
+
+        
+
+        <div class="settings-section">
+            <h2><i class="fas fa-network-wired settings-icon"></i>Transport Settings</h2>
+            <div class="setting-item">
+                <span class="setting-label">Transport Type</span>
+                <div class="setting-control">
+                    <select id="transportType">
+                        <option value="epoxy">Epoxy</option>
+                        <option value="libcurl">LibCURL</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2><i class="fas fa-search settings-icon"></i>Search Settings</h2>
+            <div class="setting-item">
+                <span class="setting-label">Default Search Engine</span>
+                <div class="setting-control">
+                    <select id="searchEngine">
+                        <option value="google">Google</option>
+                        <option value="duckduckgo">DuckDuckGo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2><i class="fas fa-user-secret settings-icon"></i>Cloaking Settings</h2>
+            <div class="setting-item">
+                <span class="setting-label">Interface Disguise</span>
+                <div class="setting-control">
+                    <select id="cloakType">
+                        <option value="none">No Cloak</option>
+                        <option value="google-docs">Google Docs</option>
+                        <option value="google-classroom">Google Classroom</option>
+                        <option value="blackboard">Blackboard</option>
+                        <option value="moodle">Moodle</option>
+                        <option value="scholastic">Scholastic</option>
+                        <option value="khan-academy">Khan Academy</option>
+                        <option value="quizlet">Quizlet</option>
+                    </select>
+                </div>
+            </div>
+            <div class="setting-item">
+                <span class="setting-label">Custom Title</span>
+                <div class="setting-control">
+                    <input type="text" id="customTitle" placeholder="Enter custom title" class="setting-input">
+                </div>
+            </div>
+            <div class="setting-item">
+                <span class="setting-label">Custom Favicon</span>
+                <div class="setting-control">
+                    <input type="text" id="customFavicon" placeholder="Enter favicon URL" class="setting-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2><i class="fas fa-palette settings-icon"></i>Theme Settings</h2>
+            <div class="setting-item">
+                <span class="setting-label">Color Theme</span>
+                <div class="setting-control">
+                    <select id="themeSelect">
+                        <option value="default">Default</option>
+                        <option value="purple">Purple</option>
+                        <option value="blue">Blue</option>
+                        <option value="red">Red</option>
+                        <option value="light">Light</option>
+                        <option value="neon">Neon</option>
+                        <option value="dark">Dark</option>
+                        <option value="sunset">Sunset</option>
+                        <option value="ocean">Ocean</option>
+                        <option value="midnight">Midnight</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+            </div>
+            <div class="theme-preview" id="themePreview" style="
+                height: 60px;
+                border-radius: 8px;
+                margin-top: 15px;
+                background: linear-gradient(45deg, var(--primary), var(--accent));
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            "></div>
+        </div>
+
+        <button class="save-button" onclick="saveSettings()">
+            <i class="fas fa-save"></i> Save Settings
+        </button>
+    </div>
+
+
+    <div class="settings-section" style="max-width:800px; margin:20px auto; border-radius:8px; box-shadow: 0 0 15px rgba(0,0,0,0.3); overflow: hidden;">
+        <button id="toggleThemeEditor" style="width: 100%; background:#444; color:#fff; border:none; padding:12px; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; user-select:none;">
+          <i class="fas fa-palette"></i> Custom Theme Editor <span id="toggleIcon" style="transition: transform 0.3s;">&#9650;</span>
+        </button>
+        <div id="themeEditorContainer" style="height:500px; transition: height 0.3s ease; overflow:hidden;">
+          <iframe src="custom.html" style="width:100%; height:100%; border:none; border-radius: 0 0 8px 8px;"></iframe>
+        </div>
+      </div>
+      
+      <script>
+        const toggleBtn = document.getElementById('toggleThemeEditor');
+        const editorContainer = document.getElementById('themeEditorContainer');
+        const toggleIcon = document.getElementById('toggleIcon');
+      
+        toggleBtn.addEventListener('click', () => {
+          if (editorContainer.style.height === '0px' || editorContainer.style.height === '') {
+            editorContainer.style.height = '500px';
+            toggleIcon.style.transform = 'rotate(0deg)';
+          } else {
+            editorContainer.style.height = '0';
+            toggleIcon.style.transform = 'rotate(180deg)';
+          }
+        });
+      </script>
+        
+        <script src="./js/settings.js"></script>    
+</body>
+</html> 

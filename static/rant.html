@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rants Feed</title>
+<link rel="stylesheet" href="./styles/index.css">
+<style>
+    /* Feed-specific styles */
+    #rantsList {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 800px;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 1;
+    }
+
+    #rantsList li {
+        padding: 15px 20px;
+        border-radius: 15px;
+        background: rgba(15, 23, 41, 0.8);
+        border: 2px solid rgba(133, 133, 204, 0.3);
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    #rantsList li:hover {
+        transform: scale(1.02);
+        border-color: var(--accent-color);
+        box-shadow: 0 0 30px var(--glow-color);
+    }
+
+    .rant-text {
+        font-size: 1rem;
+        color: var(--text-color);
+        margin-bottom: 8px;
+    }
+
+    .rant-meta {
+        font-size: 0.75rem;
+        color: rgba(255,255,255,0.6);
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+</head>
+<body>
+<div id="ambience"></div>
+
+<div class="apps-container">
+    <h1 style="text-align:center; margin-bottom: 20px;">Lithium Rants</h1>
+    <ul id="rantsList"></ul>
+</div>
+
+<div class="time-bar" id="timeBar"></div>
+
+<script>
+function updateTimeBar() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2,'0');
+    const seconds = now.getSeconds().toString().padStart(2,'0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    hours = hours.toString().padStart(2,'0');
+    document.getElementById('timeBar').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+}
+setInterval(updateTimeBar, 1000);
+updateTimeBar();
+
+async function fetchRants() {
+    try {
+        const res = await fetch("/api/rants");
+        const rants = await res.json();
+        const list = document.getElementById("rantsList");
+        list.innerHTML = "";
+        if (!Array.isArray(rants)) return;
+
+        rants.forEach(rant => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <div class="rant-text">${rant.text}</div>
+                <div class="rant-meta">
+                    <span>Posted by: ${rant.user || 'Cxin'}</span>
+                    <span>${rant.timestamp ? new Date(rant.timestamp).toLocaleString() : ''}</span>
+                </div>
+            `;
+            list.appendChild(li);
+        });
+    } catch (err) {
+        console.error("Failed to load rants:", err);
+    }
+}
+
+fetchRants();
+setInterval(fetchRants, 10000); // refresh every 10s
+</script>
+</body>
+</html>

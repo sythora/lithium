@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps - Lithium</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link id="theme-css" rel="stylesheet" href="./styles/theme-default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles/particles.css">
+    <link rel="stylesheet" href="./styles/cursor.css">
+    <style>
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 30px auto 20px auto;
+            width: 100%;
+            max-width: 350px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1.5px solid #222;
+            font-size: 1rem;
+            background: rgba(0,0,0,0.15);
+            color: #fff;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .search-bar input:focus {
+            border: 1.5px solid #888;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 30px auto 40px auto;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 50px;
+            padding: 40px 0 20px 0;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body class="theme-default">
+   
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="category" id="productivity">
+            <div class="apps-grid"></div>
+        </div>
+        <div class="category" id="social">
+            <div class="apps-grid"></div>
+        </div>
+        <div class="category" id="entertainment">
+            <div class="apps-grid"></div>
+        </div>
+        <div class="category" id="shopping">
+            <div class="apps-grid"></div>
+        </div>
+        <div class="category" id="design">
+            <div class="apps-grid"></div>
+        </div>
+        <div class="category" id="learning">
+            <div class="apps-grid"></div>
+        </div>
+    </div>
+    <script src="js/timebar.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/apps.js"></script>
+</body>
+</html> 

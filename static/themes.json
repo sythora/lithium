@@ -1,0 +1,12 @@
+{
+    "default": "./styles/index.css",
+    "purple": "./styles/themes/purple.css",
+    "blue": "./styles/themes/blue.css",
+    "red": "./styles/themes/red.css",
+    "dark": "./styles/themes/dark.css",
+    "light": "./styles/themes/light.css",
+    "neon": "./styles/themes/neon.css",
+    "midnight": "./styles/themes/midnight.css",
+    "ocean": "./styles/themes/ocean.css",
+    "sunset": "./styles/themes/sunset.css"
+} 

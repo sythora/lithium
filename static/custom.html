@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Theme Maker - Lithium</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/cursor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+
+input[type="color"] {
+  padding: 0;
+  border: none;
+  background: none;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* For Firefox */
+input[type="color"]::-moz-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border-radius: 5px;
+  border: none;
+}
+
+/* Optional: remove your generic .setting-input styles for color inputs */
+input[type="color"].setting-input {
+  color: transparent; /* hide hex text */
+  padding: 0;
+}
+
+        .custom-theme-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.3);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .custom-theme-title {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 5px;
+        }
+        .setting-label {
+            color: #fff;
+            font-size: 16px;
+        }
+        .setting-input {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+        }
+        .save-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: rgba(0,255,0,0.2);
+            border: 1px solid rgba(0,255,0,0.3);
+            border-radius: 5px;
+            color: #00ff00;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .save-button:hover {
+            background: rgba(0,255,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-theme-container">
+        <h1 class="custom-theme-title"><i class="fas fa-palette"></i> Custom Theme Maker</h1>
+        <div class="setting-item">
+            <span class="setting-label">Background Gradient</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="color" id="gradient-start" class="setting-input" value="#0f1729" title="Gradient Start">
+                <span style="color:#fff;">→</span>
+                <input type="color" id="gradient-end" class="setting-input" value="#2c1f4a" title="Gradient End">
+                <div id="gradient-preview" style="width: 60px; height: 30px; border-radius: 6px; border: 1px solid #444; margin-left: 10px;"></div>
+            </div>
+            <input type="hidden" id="custom-bg-gradient" value="">
+        </div>
+        <div class="setting-item"><span class="setting-label">Text Color</span><input type="color" id="custom-text-color" class="setting-input" value="#e6e6ff"></div>
+        <div class="setting-item"><span class="setting-label">Accent Color</span><input type="color" id="custom-accent-color" class="setting-input" value="#8585cc"></div>
+        <div class="setting-item"><span class="setting-label">Input BG</span><input type="color" id="custom-input-bg" class="setting-input" value="#ffffff"></div>
+        <div class="setting-item"><span class="setting-label">Input Border</span><input type="color" id="custom-input-border" class="setting-input" value="#cccccc"></div>
+        <div class="setting-item"><span class="setting-label">Input Hover BG</span><input type="color" id="custom-input-hover-bg" class="setting-input" value="#eeeeee"></div>
+        <div class="setting-item"><span class="setting-label">Glow Color</span><input type="color" id="custom-glow-color" class="setting-input" value="#8585cc"></div>
+        <div class="setting-item"><span class="setting-label">Category Title Gradient</span><input type="text" id="custom-category-title-gradient" class="setting-input" value=""></div>
+        <div class="setting-item"><span class="setting-label">Category BG</span><input type="color" id="custom-category-bg" class="setting-input" value="#ffffff"></div>
+        <div class="setting-item"><span class="setting-label">App BG</span><input type="color" id="custom-app-bg" class="setting-input" value="#ffffff"></div>
+        <div class="setting-item"><span class="setting-label">App Border</span><input type="color" id="custom-app-border" class="setting-input" value="#cccccc"></div>
+        <div class="setting-item"><span class="setting-label">App Hover BG</span><input type="color" id="custom-app-hover-bg" class="setting-input" value="#eeeeee"></div>
+        <div class="setting-item"><span class="setting-label">App Hover Border</span><input type="color" id="custom-app-hover-border" class="setting-input" value="#cccccc"></div>
+        <div class="setting-item">
+            <span class="setting-label">App Shadow</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="range" id="app-shadow-blur" min="0" max="40" value="20" style="width:70px;">
+                <input type="color" id="app-shadow-color" value="#000000">
+                <div id="app-shadow-preview" style="width: 40px; height: 24px; border-radius: 6px; border: 1px solid #444; background: #fff;"></div>
+            </div>
+            <input type="hidden" id="custom-app-shadow" value="0 0 20px rgba(0,0,0,0.2)">
+        </div>
+        <div class="setting-item">
+            <span class="setting-label">App Hover Shadow</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <input type="range" id="app-hover-shadow-blur" min="0" max="40" value="30" style="width:70px;">
+                <input type="color" id="app-hover-shadow-color" value="#000000">
+                <div id="app-hover-shadow-preview" style="width: 40px; height: 24px; border-radius: 6px; border: 1px solid #444; background: #fff;"></div>
+            </div>
+            <input type="hidden" id="custom-app-hover-shadow" value="0 0 30px rgba(0,0,0,0.3)">
+        </div>
+        <button class="save-button" id="save"><i class="fas fa-save"></i> Save as My Theme</button>
+    </div>
+    <script src="js/cursor.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  const saveBtn = document.getElementById('save'); // use 'save' not 'saveCustomTheme'
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      console.log('Save button clicked');
+      saveCustomTheme();
+    });
+  }
+});
+
+    </script>
+
+<script>
+    function updateGradient() {
+      const start = document.getElementById('gradient-start').value;
+      const end = document.getElementById('gradient-end').value;
+      const val = `linear-gradient(135deg, ${start}, ${end})`;
+      document.getElementById('custom-bg-gradient').value = val;
+      document.getElementById('gradient-preview').style.background = val;
+      document.documentElement.style.setProperty('--bg-gradient', val);
+    }
+    
+    function updateShadow(id, blurInput, colorInput, variable) {
+      const blur = document.getElementById(blurInput).value;
+      const color = document.getElementById(colorInput).value;
+      const shadowVal = `0 0 ${blur}px ${color}`;
+      document.getElementById(id).style.boxShadow = shadowVal;
+      document.getElementById('custom-' + variable).value = shadowVal;
+      document.documentElement.style.setProperty('--' + variable, shadowVal);
+    }
+    
+    function saveTheme() {
+      const theme = {
+        'custom-bg-gradient': document.getElementById('custom-bg-gradient').value,
+        'custom-app-shadow': document.getElementById('custom-app-shadow').value,
+        'custom-app-hover-shadow': document.getElementById('custom-app-hover-shadow').value
+      };
+      localStorage.setItem('customTheme', JSON.stringify(theme));
+      localStorage.setItem('selectedTheme', 'custom');
+      console.log('✅ Saved custom theme:', theme);
+    }
+    
+    // Event Listeners
+    document.getElementById('gradient-start').addEventListener('input', updateGradient);
+    document.getElementById('gradient-end').addEventListener('input', updateGradient);
+    
+    document.getElementById('app-shadow-blur').addEventListener('input', () => {
+      updateShadow('app-shadow-preview', 'app-shadow-blur', 'app-shadow-color', 'app-shadow');
+    });
+    document.getElementById('app-shadow-color').addEventListener('input', () => {
+      updateShadow('app-shadow-preview', 'app-shadow-blur', 'app-shadow-color', 'app-shadow');
+    });
+    
+    document.getElementById('app-hover-shadow-blur').addEventListener('input', () => {
+      updateShadow('app-hover-shadow-preview', 'app-hover-shadow-blur', 'app-hover-shadow-color', 'app-hover-shadow');
+    });
+    document.getElementById('app-hover-shadow-color').addEventListener('input', () => {
+      updateShadow('app-hover-shadow-preview', 'app-hover-shadow-blur', 'app-hover-shadow-color', 'app-hover-shadow');
+    });
+    
+    document.getElementById('saveCustomTheme').addEventListener('click', saveTheme);
+    
+    // Load from localStorage if exists
+    window.onload = () => {
+      const saved = JSON.parse(localStorage.getItem('customTheme') || '{}');
+      if (saved['custom-bg-gradient']) {
+        document.getElementById('custom-bg-gradient').value = saved['custom-bg-gradient'];
+        document.getElementById('gradient-preview').style.background = saved['custom-bg-gradient'];
+        document.documentElement.style.setProperty('--bg-gradient', saved['custom-bg-gradient']);
+      }
+      if (saved['custom-app-shadow']) {
+        document.getElementById('custom-app-shadow').value = saved['custom-app-shadow'];
+        document.getElementById('app-shadow-preview').style.boxShadow = saved['custom-app-shadow'];
+        document.documentElement.style.setProperty('--app-shadow', saved['custom-app-shadow']);
+      }
+      if (saved['custom-app-hover-shadow']) {
+        document.getElementById('custom-app-hover-shadow').value = saved['custom-app-hover-shadow'];
+        document.getElementById('app-hover-shadow-preview').style.boxShadow = saved['custom-app-hover-shadow'];
+        document.documentElement.style.setProperty('--app-hover-shadow', saved['custom-app-hover-shadow']);
+      }
+    };
+    </script>
+    
+    <script src="./js/custom-theme.js"></script>
+</body>
+</html> 
