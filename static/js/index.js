@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(rants => {
       if (!Array.isArray(rants) || rants.length === 0) {
-        document.getElementById("motd").innerText = "⚠️ No MOTD available.";
+        document.getElementById("motd").innerText = " No MOTD available.";
         return;
       }
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => {
       console.error("Failed to load MOTD:", err);
-      document.getElementById("motd").innerText = "⚠️ Failed to load MOTD.";
+      document.getElementById("motd").innerText = " Failed to load MOTD.";
     });
 });
 
@@ -159,3 +159,15 @@ document.getElementById('searchApps')?.addEventListener('input', e => {
         app.classList.toggle('hidden', !text.includes(search_term));
     });
 });
+
+
+// gtag DO NOT REMOVE
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44N3Y0R9JN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44N3Y0R9JN');
+</script>
+
